@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 import os
 import requests
 import pandas as pd
@@ -33,6 +34,7 @@ WEBHOOK_URL = os.getenv("WEBHOOK_URL")  # Add your webhook URL in .env
 
 # --------------------- Initialize clients ---------------------
 app = Flask(__name__)
+CORS(app)
 
 reddit = praw.Reddit(
     client_id=REDDIT_CLIENT_ID,
