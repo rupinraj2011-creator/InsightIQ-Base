@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagnostic Check</title>
+    <style>
+        body {
+            font-family: monospace;
+            background: #0a0e27;
+            color: #00d4ff;
+            padding: 2rem;
+        }
+        .status { margin: 1rem 0; padding: 1rem; background: #1e2139; border-radius: 4px; }
+        .success { color: #10b981; }
+        .error { color: #ef4444; }
+    </style>
+</head>
+<body>
+    <h1>InSightIQ Diagnostic Check</h1>
+    <div id="checks"></div>
+
+    <script>
+        const checksDiv = document.getElementById('checks');
+
+        function addCheck(name, status, message) {
+            const div = document.createElement('div');
+            div.className = 'status';
+            div.innerHTML = `<strong>${name}:</strong> <span class="${status}">${message}</span>`;
+            checksDiv.appendChild(div);
+        }
+
+        // Check 1: Page loaded
+        addCheck('Page Load', 'success', '✓ HTML loaded successfully');
+
+        // Check 2: Try to load CSS
+        fetch('css/styles.css')
+            .then(res => {
+                if (res.ok) {
+                    addCheck('CSS File', 'success', '✓ styles.css is accessible');
+                } else {
+                    addCheck('CSS File', 'error', '✗ styles.css returned status: ' + res.status);
+                }
+            })
+            .catch(err => addCheck('CSS File', 'error', '✗ Cannot load CSS: ' + err.message));
+
+        // Check 3: Try to load JS
+        fetch('js/main.js')
+            .then(res => {
+                if (res.ok) {
+                    addCheck('JavaScript File', 'success', '✓ main.js is accessible');
+                } else {
+                    addCheck('JavaScript File', 'error', '✗ main.js returned status: ' + res.status);
+                }
+            })
+            .catch(err => addCheck('JavaScript File', 'error', '✗ Cannot load JS: ' + err.message));
+
+        // Check 4: Test backend connection
+        fetch('http://localhost:5000/api/insights?company=OpenAI&symbol=MSFT')
+            .then(res => {
+                if (res.ok) {
+                    addCheck('Backend API', 'success', '✓ Backend is running on localhost:5000');
+                } else {
+                    addCheck('Backend API', 'error', '✗ Backend returned status: ' + res.status);
+                }
+            })
+            .catch(err => addCheck('Backend API', 'error', '✗ Backend not running: ' + err.message));
+
+        // Check 5: Chart.js CDN
+        if (typeof Chart !== 'undefined') {
+            addCheck('Chart.js CDN', 'success', '✓ Chart.js loaded from CDN');
+        } else {
+            setTimeout(() => {
+                if (typeof Chart !== 'undefined') {
+                    addCheck('Chart.js CDN', 'success', '✓ Chart.js loaded from CDN');
+                } else {
+                    addCheck('Chart.js CDN', 'error', '✗ Chart.js not loaded - check internet connection');
+                }
+            }, 2000);
+        }
+
+        // Check 6: Console test
+        console.log('InSightIQ Diagnostic: All checks running');
+        addCheck('Browser Console', 'success', '✓ Check browser console (F12) for logs');
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InSightIQ - Start Here</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+        .container {
+            max-width: 800px;
+            background: rgba(30, 33, 57, 0.8);
+            padding: 3rem;
+            border-radius: 1rem;
+            border: 2px solid #00d4ff;
+            box-shadow: 0 20px 60px rgba(0, 212, 255, 0.3);
+        }
+        h1 {
+            background: linear-gradient(135deg, #00d4ff, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        .step {
+            background: #0a0e27;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 0.5rem;
+            border-left: 4px solid #00d4ff;
+        }
+        .step h3 {
+            color: #00d4ff;
+            margin-bottom: 0.5rem;
+        }
+        .step p {
+            color: #a0aec0;
+            line-height: 1.6;
+        }
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        .btn {
+            background: linear-gradient(135deg, #00d4ff, #7c3aed);
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: transform 0.3s;
+            display: inline-block;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.5);
+        }
+        .status {
+            padding: 1rem;
+            background: #1a1f3a;
+            border-radius: 0.5rem;
+            margin: 1rem 0;
+        }
+        .success { color: #10b981; }
+        .error { color: #ef4444; }
+        .warning { color: #f59e0b; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to InSightIQ</h1>
+        <p style="color: #a0aec0; margin-bottom: 2rem;">Strategic Intelligence Platform - Setup Verification</p>
+
+        <div class="step">
+            <h3>Step 1: Verify Files</h3>
+            <p>All required files are in place:</p>
+            <div id="fileCheck" class="status">Checking files...</div>
+        </div>
+
+        <div class="step">
+            <h3>Step 2: Test Components</h3>
+            <p>Click the buttons below to test each component:</p>
+        </div>
+
+        <div class="button-group">
+            <a href="diagnostic.html" class="btn">🔍 Run Diagnostics</a>
+            <a href="test.html" class="btn">🧪 Simple Test</a>
+            <a href="index.html" class="btn">🚀 Launch Dashboard</a>
+        </div>
+
+        <div class="step">
+            <h3>Step 3: Backend Status</h3>
+            <div id="backendStatus" class="status">Checking backend...</div>
+        </div>
+
+        <div class="step">
+            <h3>Step 4: Quick Tips</h3>
+            <p>
+                • Make sure you're viewing from <code>http://localhost:8080</code> (not file:///) <br>
+                • Backend should be running on <code>http://localhost:5000</code> <br>
+                • Check browser console (F12) for any errors <br>
+                • Use Chrome, Firefox, or Edge for best results
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // File check
+        const files = ['css/styles.css', 'js/main.js', 'index.html'];
+        let allFilesOk = true;
+
+        Promise.all(files.map(file =>
+            fetch(file)
+                .then(res => ({ file, ok: res.ok }))
+                .catch(() => ({ file, ok: false }))
+        )).then(results => {
+            const fileCheck = document.getElementById('fileCheck');
+            let html = '';
+            results.forEach(({ file, ok }) => {
+                const status = ok ? '✓' : '✗';
+                const className = ok ? 'success' : 'error';
+                html += `<div class="${className}">${status} ${file}</div>`;
+                if (!ok) allFilesOk = false;
+            });
+            fileCheck.innerHTML = html;
+
+            if (allFilesOk) {
+                fileCheck.innerHTML += '<div class="success" style="margin-top: 1rem;">✓ All files are accessible!</div>';
+            }
+        });
+
+        // Backend check
+        fetch('http://localhost:5000/api/insights?company=Test&symbol=TEST')
+            .then(res => {
+                const backendStatus = document.getElementById('backendStatus');
+                if (res.ok || res.status === 500) {
+                    backendStatus.innerHTML = '<div class="success">✓ Backend is running on http://localhost:5000</div>';
+                } else {
+                    backendStatus.innerHTML = '<div class="warning">⚠ Backend responded with status: ' + res.status + '</div>';
+                }
+            })
+            .catch(err => {
+                const backendStatus = document.getElementById('backendStatus');
+                backendStatus.innerHTML = `
+                    <div class="warning">⚠ Backend not running</div>
+                    <p style="color: #a0aec0; margin-top: 0.5rem;">
+                        To start backend: <code>cd backend && python app.py</code>
+                    </p>
+                `;
+            });
+
+        console.log('START_HERE.html loaded successfully');
+        console.log('If you can see this in console, JavaScript is working fine!');
+    </script>
+</body>
+</html>
