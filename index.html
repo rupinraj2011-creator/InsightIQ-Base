@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InSightIQ - Strategic Intelligence Platform</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-icon">⚡</span>
+                <span class="logo-text">InSightIQ</span>
+            </div>
+            <div class="nav-menu">
+                <a href="#dashboard" class="nav-link active">Dashboard</a>
+                <a href="#competitors" class="nav-link">Competitors</a>
+                <a href="#market" class="nav-link">Market</a>
+                <a href="#social" class="nav-link">Social</a>
+                <a href="#news" class="nav-link">News</a>
+                <a href="#settings" class="nav-link">Settings</a>
+            </div>
+            <div class="nav-user">
+                <div class="user-avatar">IN</div>
+            </div>
+        </div>
+    </nav>
+
+    <div id="topicModal" class="modal show">
+        <div class="modal-content topic-modal">
+            <div class="modal-header">
+                <h2>Select Strategic Domain</h2>
+                <p>Choose your area of focus to begin intelligence analysis</p>
+            </div>
+            <div class="topic-grid">
+                <div class="topic-card" data-topic="ai-ml">
+                    <div class="topic-icon">🤖</div>
+                    <h3>AI & Machine Learning</h3>
+                    <p>OpenAI, Anthropic, DeepMind, Hugging Face, Stability AI</p>
+                </div>
+                <div class="topic-card" data-topic="cloud-saas">
+                    <div class="topic-icon">☁️</div>
+                    <h3>Cloud Computing & SaaS</h3>
+                    <p>AWS, Azure, Google Cloud, Salesforce, Oracle</p>
+                </div>
+                <div class="topic-card" data-topic="cybersecurity">
+                    <div class="topic-icon">🔒</div>
+                    <h3>Cybersecurity & Data Privacy</h3>
+                    <p>Palo Alto, CrowdStrike, Fortinet, Cloudflare, Check Point</p>
+                </div>
+                <div class="topic-card" data-topic="web3">
+                    <div class="topic-icon">⛓️</div>
+                    <h3>Web3, Blockchain & Crypto</h3>
+                    <p>Coinbase, Binance, ConsenSys, Chainalysis, Polygon Labs</p>
+                </div>
+                <div class="topic-card" data-topic="ar-vr">
+                    <div class="topic-icon">🥽</div>
+                    <h3>Augmented & Virtual Reality</h3>
+                    <p>Meta, HTC Vive, Niantic, Magic Leap, Varjo</p>
+                </div>
+                <div class="topic-card" data-topic="robotics">
+                    <div class="topic-icon">🦾</div>
+                    <h3>Robotics & Automation</h3>
+                    <p>Boston Dynamics, ABB, iRobot, Fanuc, UiPath</p>
+                </div>
+                <div class="topic-card" data-topic="semiconductors">
+                    <div class="topic-icon">💎</div>
+                    <h3>Semiconductors & Hardware</h3>
+                    <p>Intel, AMD, NVIDIA, TSMC, Qualcomm</p>
+                </div>
+                <div class="topic-card" data-topic="quantum">
+                    <div class="topic-icon">⚛️</div>
+                    <h3>Quantum Computing</h3>
+                    <p>IBM Quantum, Rigetti, IonQ, D-Wave, Xanadu</p>
+                </div>
+                <div class="topic-card" data-topic="consumer-electronics">
+                    <div class="topic-icon">📱</div>
+                    <h3>Consumer Electronics</h3>
+                    <p>Apple, Samsung, Sony, LG Electronics, Xiaomi</p>
+                </div>
+                <div class="topic-card" data-topic="green-tech">
+                    <div class="topic-icon">🌱</div>
+                    <h3>Green Tech & Energy Innovation</h3>
+                    <p>Tesla Energy, Enphase, Siemens Energy, Ørsted, First Solar</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main class="dashboard-container">
+        <div class="dashboard-header">
+            <div class="header-content">
+                <h1 id="dashboardTitle">Strategic Intelligence Dashboard</h1>
+                <p id="dashboardSubtitle">Select a domain to begin analysis</p>
+            </div>
+            <div class="header-filters">
+                <select id="timeRangeFilter" class="filter-select">
+                    <option value="7">Last 7 Days</option>
+                    <option value="30" selected>Last 30 Days</option>
+                    <option value="90">Last 90 Days</option>
+                </select>
+                <button class="filter-btn" id="refreshBtn">
+                    <span class="refresh-icon">↻</span>
+                    Refresh
+                </button>
+            </div>
+        </div>
+
+        <div class="competitors-section">
+            <h2 class="section-title">Competitor Landscape</h2>
+            <div id="competitorsGrid" class="competitors-grid">
+                <div class="placeholder-message">
+                    <div class="placeholder-icon">📊</div>
+                    <p>Select a strategic domain to view competitors</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="insights-section">
+            <div class="market-forecast">
+                <h2 class="section-title">Market Forecast</h2>
+                <div class="chart-container">
+                    <canvas id="forecastChart"></canvas>
+                </div>
+            </div>
+
+            <div class="feeds-container">
+                <div class="news-feed">
+                    <h2 class="section-title">Latest News</h2>
+                    <div id="newsFeed" class="feed-content">
+                        <div class="feed-placeholder">No news data available</div>
+                    </div>
+                </div>
+
+                <div class="social-feed">
+                    <h2 class="section-title">Social Intelligence</h2>
+                    <div id="socialFeed" class="feed-content">
+                        <div class="feed-placeholder">No social data available</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="insightsModal" class="modal">
+        <div class="modal-content insights-modal">
+            <div class="modal-header">
+                <div class="modal-header-left">
+                    <img id="modalCompanyLogo" src="" alt="" class="modal-logo">
+                    <div>
+                        <h2 id="modalCompanyName"></h2>
+                        <p id="modalCompanySymbol"></p>
+                    </div>
+                </div>
+                <button class="close-btn" id="closeInsightsModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="loading-spinner" id="modalLoading">
+                    <div class="spinner"></div>
+                    <p>Generating insights...</p>
+                </div>
+                <div id="modalContent" class="modal-insights-content" style="display: none;">
+                    <div class="insights-panel">
+                        <h3>AI-Generated Insights</h3>
+                        <div id="aiInsights" class="insights-text"></div>
+                    </div>
+
+                    <div class="forecast-panel">
+                        <h3>Market Forecast (30-Day Prophet Analysis)</h3>
+                        <div class="chart-container">
+                            <canvas id="modalForecastChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="news-panel">
+                        <h3>Recent News Headlines</h3>
+                        <div id="modalNews" class="news-list"></div>
+                    </div>
+
+                    <div class="social-panel">
+                        <h3>Social Media Activity</h3>
+                        <div class="social-tabs">
+                            <button class="social-tab active" data-tab="twitter">Twitter</button>
+                            <button class="social-tab" data-tab="reddit">Reddit</button>
+                        </div>
+                        <div id="modalSocial" class="social-content"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

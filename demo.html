@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InSightIQ - Demo Mode</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-icon">⚡</span>
+                <span class="logo-text">InSightIQ</span>
+            </div>
+            <div class="nav-menu">
+                <a href="#dashboard" class="nav-link active">Dashboard</a>
+                <a href="#competitors" class="nav-link">Competitors</a>
+                <a href="#market" class="nav-link">Market</a>
+                <a href="#social" class="nav-link">Social</a>
+                <a href="#news" class="nav-link">News</a>
+                <a href="#settings" class="nav-link">Settings</a>
+            </div>
+            <div class="nav-user">
+                <div class="user-avatar">DM</div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="dashboard-container">
+        <div class="dashboard-header">
+            <div class="header-content">
+                <h1>Demo Mode - AI & Machine Learning</h1>
+                <p>Preview of InSightIQ Intelligence Dashboard</p>
+            </div>
+            <div class="header-filters">
+                <select class="filter-select">
+                    <option value="30" selected>Last 30 Days</option>
+                </select>
+                <button class="filter-btn" onclick="alert('Demo mode - Backend required for live data')">
+                    <span class="refresh-icon">↻</span>
+                    Refresh
+                </button>
+            </div>
+        </div>
+
+        <div style="background: var(--bg-card); border: 2px solid var(--accent-warning); border-radius: 1rem; padding: 1rem; margin-bottom: 2rem;">
+            <p style="color: var(--accent-warning); font-weight: 600; margin-bottom: 0.5rem;">📌 Demo Mode Active</p>
+            <p style="color: var(--text-secondary); font-size: 0.875rem;">
+                This is a static preview. To see live data, start the backend server and open <code>index.html</code>.
+                See <strong>SETUP.md</strong> for instructions.
+            </p>
+        </div>
+
+        <div class="competitors-section">
+            <h2 class="section-title">Competitor Landscape</h2>
+            <div class="competitors-grid">
+                <div class="competitor-card">
+                    <div class="competitor-logo-container">
+                        <div style="font-size: 2rem;">🤖</div>
+                    </div>
+                    <h3 class="competitor-name">OpenAI</h3>
+                    <p class="competitor-symbol">MSFT</p>
+                    <button class="view-insights-btn" onclick="alert('Demo mode - Backend required for insights')">View Insights</button>
+                </div>
+
+                <div class="competitor-card">
+                    <div class="competitor-logo-container">
+                        <div style="font-size: 2rem;">🧠</div>
+                    </div>
+                    <h3 class="competitor-name">Anthropic</h3>
+                    <p class="competitor-symbol">GOOGL</p>
+                    <button class="view-insights-btn" onclick="alert('Demo mode - Backend required for insights')">View Insights</button>
+                </div>
+
+                <div class="competitor-card">
+                    <div class="competitor-logo-container">
+                        <div style="font-size: 2rem;">🔬</div>
+                    </div>
+                    <h3 class="competitor-name">DeepMind</h3>
+                    <p class="competitor-symbol">GOOGL</p>
+                    <button class="view-insights-btn" onclick="alert('Demo mode - Backend required for insights')">View Insights</button>
+                </div>
+
+                <div class="competitor-card">
+                    <div class="competitor-logo-container">
+                        <div style="font-size: 2rem;">🤗</div>
+                    </div>
+                    <h3 class="competitor-name">Hugging Face</h3>
+                    <p class="competitor-symbol">MSFT</p>
+                    <button class="view-insights-btn" onclick="alert('Demo mode - Backend required for insights')">View Insights</button>
+                </div>
+
+                <div class="competitor-card">
+                    <div class="competitor-logo-container">
+                        <div style="font-size: 2rem;">🎨</div>
+                    </div>
+                    <h3 class="competitor-name">Stability AI</h3>
+                    <p class="competitor-symbol">NVDA</p>
+                    <button class="view-insights-btn" onclick="alert('Demo mode - Backend required for insights')">View Insights</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="insights-section">
+            <div class="market-forecast">
+                <h2 class="section-title">Market Forecast (Demo)</h2>
+                <div class="chart-container">
+                    <canvas id="demoChart"></canvas>
+                </div>
+            </div>
+
+            <div class="feeds-container">
+                <div class="news-feed">
+                    <h2 class="section-title">Latest News (Sample)</h2>
+                    <div class="feed-content">
+                        <div class="news-item">
+                            <h4>AI Industry Sees Major Breakthrough in Natural Language Processing</h4>
+                            <p>Demo article showcasing the news feed layout and styling.</p>
+                            <a href="#">Read more →</a>
+                        </div>
+                        <div class="news-item">
+                            <h4>OpenAI Announces New Model Capabilities</h4>
+                            <p>Sample news article to demonstrate the feed interface.</p>
+                            <a href="#">Read more →</a>
+                        </div>
+                        <div class="news-item">
+                            <h4>Machine Learning Investment Reaches Record High</h4>
+                            <p>Example of how news headlines appear in the dashboard.</p>
+                            <a href="#">Read more →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="social-feed">
+                    <h2 class="section-title">Social Intelligence (Sample)</h2>
+                    <div class="feed-content">
+                        <div class="social-item">
+                            <div class="social-item-header">
+                                <span class="social-platform">Twitter</span>
+                            </div>
+                            <p>Sample tweet showing social media integration in the dashboard interface.</p>
+                        </div>
+                        <div class="social-item">
+                            <div class="social-item-header">
+                                <span class="social-platform">Reddit</span>
+                                <span class="social-score">↑ 1.2k</span>
+                            </div>
+                            <p>Demo Reddit post showing how social content is displayed.</p>
+                        </div>
+                        <div class="social-item">
+                            <div class="social-item-header">
+                                <span class="social-platform">Twitter</span>
+                            </div>
+                            <p>Another example of social media content in the feed.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const ctx = document.getElementById('demoChart').getContext('2d');
+
+        const labels = [];
+        const data = [];
+        const baseValue = 150;
+
+        for (let i = 0; i < 30; i++) {
+            const date = new Date();
+            date.setDate(date.getDate() + i);
+            labels.push(date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }));
+            data.push(baseValue + Math.random() * 20 + i * 0.5);
+        }
+
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Demo Forecast',
+                    data: data,
+                    borderColor: '#3b82f6',
+                    backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                    borderWidth: 2,
+                    tension: 0.4,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: true,
+                        labels: {
+                            color: '#9ca3af'
+                        }
+                    },
+                    tooltip: {
+                        backgroundColor: 'rgba(26, 34, 56, 0.95)',
+                        titleColor: '#ffffff',
+                        bodyColor: '#9ca3af',
+                        borderColor: '#3b82f6',
+                        borderWidth: 1
+                    }
+                },
+                scales: {
+                    x: {
+                        grid: {
+                            color: 'rgba(255, 255, 255, 0.05)'
+                        },
+                        ticks: {
+                            color: '#9ca3af',
+                            maxTicksLimit: 10
+                        }
+                    },
+                    y: {
+                        grid: {
+                            color: 'rgba(255, 255, 255, 0.05)'
+                        },
+                        ticks: {
+                            color: '#9ca3af'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

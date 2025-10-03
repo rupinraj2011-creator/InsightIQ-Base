@@ -1,0 +1,19 @@
+{
+  "name": "insightiq-dashboard",
+  "version": "1.0.0",
+  "description": "Strategic Intelligence Platform Dashboard",
+  "main": "index.html",
+  "scripts": {
+    "start": "python -m http.server 8000",
+    "backend": "cd backend && python app.py",
+    "dev": "echo 'Please run backend separately with: npm run backend' && python -m http.server 8000"
+  },
+  "keywords": [
+    "intelligence",
+    "dashboard",
+    "analytics",
+    "market-research"
+  ],
+  "author": "InSightIQ",
+  "license": "MIT"
+}

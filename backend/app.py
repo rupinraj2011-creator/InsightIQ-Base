@@ -135,6 +135,17 @@ def push_webhook(data, retries=3, delay=2):
     print("Webhook push failed after all retries.")
 
 
+# --------------------- LOGO API ---------------------
+from flask import send_file
+
+@app.route("/logos/<path:filepath>")
+def serve_logo(filepath):
+    try:
+        logo_path = os.path.join(os.path.dirname(__file__), "logos", filepath)
+        return send_file(logo_path)
+    except Exception as e:
+        return jsonify({"error": str(e)}), 404
+
 # --------------------- INSIGHTS API ---------------------
 @app.route("/api/insights")
 def get_insights():
